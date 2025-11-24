@@ -1,0 +1,153 @@
+/* Barra de progreso */
+.barra-progreso {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.relleno-progreso {
+  height: 100%;
+  background: var(--acento);
+  width: 0%;
+  transition: width 0.5s;
+}
+
+/* Puntuación general */
+.mostrar-puntuacion {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  color: var(--acento);
+}
+
+/* Resultados y análisis */
+.resultado-analisis {
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 15px;
+}
+
+.puntuacion-palabra {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* tres columnas iguales */
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  gap: 0; /* sin espacios entre columnas, ajusta si quieres separación */
+}
+
+/* Estilos del encabezado (sin cambios funcionales) */
+.puntuacion-palabra.encabezado {
+  background: rgba(125, 211, 252, 0.1);
+  border-bottom: 2px solid var(--acento);
+  font-weight: bold;
+}
+
+/* Columnas 1 y 2: texto centrado dentro de su columna */
+.puntuacion-palabra > .texto-palabra:first-child,
+.puntuacion-palabra > .texto-palabra:nth-child(2) {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  padding: 0 8px;
+}
+
+.puntuacion-palabra > span:last-child {
+  justify-self: center;
+  align-self: center;
+  white-space: nowrap;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.insignia-puntuacion {
+  background: var(--acento);
+  color: #02263a;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+  min-width: 30px;
+  text-align: center;
+  display: inline-block;
+}
+
+.insignia-puntuacion.buena { background: var(--bueno); color: white; }
+.insignia-puntuacion.media { background: #eab308; color: white; }
+.insignia-puntuacion.mala { background: var(--malo); color: white; }
+
+.contenedor-imagen-promedio {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 2px solid rgba(125, 211, 252, 0.3);
+  animation: aparecer 0.5s ease-in-out;
+}
+
+.contenedor-imagen-promedio h3 {
+  color: var(--acento);
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.imagen-promedio {
+  max-width: 500px;
+  max-height: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  display: block;
+}
+
+.retroalimentacion {
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.resumen-analisis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.informacion-depuracion {
+  background: rgba(131, 148, 131, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #0ccf26;
+  white-space: pre-line;
+  font-weight: bold;
+}
+
+#liveText {
+  width: 100%;
+  background: #1b222f;
+  color: white;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+#liveText:focus {
+  outline: none;
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 2px rgba(125, 211, 252, 0.2);
+}
