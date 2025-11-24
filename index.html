@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Trabalenguas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="contenedor">
+    <h1>Trabalenguas</h1>
+    <p class="subtitulo">Pronuncia el trabalenguas y recibe puntuación</p>
+
+    <div id="twisterDisplay" class="trabalenguas">Cargando trabalenguas...</div>
+    
+    <div class="controles">
+        <button id="startBtn">Iniciar Grabación</button>
+        <button id="stopBtn" disabled>Detener Grabación</button>
+        <button id="customTwisterBtn">Nuevo Trabalenguas</button>
+        <button id="showAnimationBtn">Ver animación</button>
+    </div>
+    
+    <div id="customTwisterContainer" class="contenedor-trabalenguas-personalizado" style="display:none">
+        <textarea id="customTwisterInput" placeholder="Escribe tu trabalenguas aquí..." rows="3"></textarea>
+        <div class="controles">
+            <button id="saveCustomTwister">Guardar</button>
+            <button id="cancelCustomTwister">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="controles">
+        <button id="anteriorBtn">← Anterior</button>
+        <button id="siguienteBtn">Siguiente →</button>
+    </div>
+
+    <div id="imagenPromedioContainer" class="contenedor-imagen-promedio" style="display: none;">
+        <h3>Calificación Promedio</h3>
+        <img id="imagenPromedio" src="" alt="Calificación" class="imagen-promedio">
+    </div>
+
+    <p id="recognitionStatus" class="pequeno-tenue">Micrófono inactivo</p>
+
+    <div id="transcripcionContinua" class="transcripcion-continua"></div>
+
+    <div class="mostrar-puntuacion" id="globalScore">0%</div>
+
+    <div class="barra-progreso">
+        <div id="progressBar" class="relleno-progreso"></div>
+    </div>
+
+    <div id="finalMessage" class="mensaje-resultado"></div>
+
+    <div id="wordTable" class="resultado-analisis">
+        <div class="puntuacion-palabra encabezado">
+            <span class="texto-palabra">Dicho</span>
+            <span class="texto-palabra">Original</span>
+            <span>Puntuación</span>
+        </div>
+    </div>
+</div>
+
+<div id="animationOverlay" class="capa-animacion">
+    <img id="animationImage" class="imagen-animacion" src="" alt="Resultado">
+    <div id="animationText" class="texto-animacion"></div>
+    <button id="skipAnimation" class="saltar-animacion">Saltar</button>
+</div>
+
+<script src="scripts/data.js"></script>
+<script src="scripts/reconocimientoVoz.js"></script>
+<script src="scripts/analisisVoz.js"></script>
+<script src="scripts/nuevoTrabalenguas.js"></script>
+<script src="scripts/animacionesMusica.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
