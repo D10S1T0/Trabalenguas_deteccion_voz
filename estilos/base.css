@@ -216,3 +216,11 @@ button:disabled {
     background: #2563eb;
 }
 
+.link-verde {
+  color: #22c55e;    
+  text-decoration: none; 
+}
+
+.link-verde:visited {
+  color: #9ff5c9;     
+}
