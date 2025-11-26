@@ -1,7 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
     const detectorVoz = new DetectorVoz();
-    const adminTrabalenguas = new AdministradorTrabalenguas();
-    
+
+    const esperarTrabalenguas = setInterval(() => {
+        if (typeof trabalenguasActual !== "undefined" && trabalenguasActual !== null) {
+            clearInterval(esperarTrabalenguas);
+            const indice = trabalenguasLista.indexOf(trabalenguasActual);
+            cambiarTrabalenguas(
+                trabalenguasLista[(indice - 1 + trabalenguasLista.length) % trabalenguasLista.length]
+            );
+            if (window.listaTrabalenguasInstance) {
+                window.listaTrabalenguasInstance.actualizar();
+            }
+        }
+    }, 50);
+
     const elements = {
         startBtn: document.getElementById("startBtn"),
         stopBtn: document.getElementById("stopBtn"),
