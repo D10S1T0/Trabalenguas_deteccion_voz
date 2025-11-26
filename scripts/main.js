@@ -57,12 +57,18 @@ document.addEventListener("DOMContentLoaded", () => {
         ocultarImagenPromedioSiEsNecesario(e.target);
         const indice = trabalenguasLista.indexOf(trabalenguasActual);
         cambiarTrabalenguas(trabalenguasLista[(indice - 1 + trabalenguasLista.length) % trabalenguasLista.length]);
+        if (window.listaTrabalenguasInstance) {
+            window.listaTrabalenguasInstance.actualizar();
+        }
     });
 
     document.getElementById("siguienteBtn")?.addEventListener("click", (e) => {
         ocultarImagenPromedioSiEsNecesario(e.target);
         const indice = trabalenguasLista.indexOf(trabalenguasActual);
         cambiarTrabalenguas(trabalenguasLista[(indice + 1) % trabalenguasLista.length]);
+        if (window.listaTrabalenguasInstance) {
+            window.listaTrabalenguasInstance.actualizar();
+        }
     });
 
     window.cambiarTrabalenguas = (nuevoTrabalenguas) => {

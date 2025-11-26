@@ -12,6 +12,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+
 .pequeno-tenue.grabando {
   color: var(--bueno);
   animation: pulsar 1.5s infinite;
@@ -83,4 +84,27 @@
   padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* Estilos para la lista de trabalenguas - Texto plano con colores */
+#listaTrabalenguas {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#listaTrabalenguas:empty::before {
+  content: "No hay trabalenguas en la lista. Genera algunos para verlos aquí.";
+  color: #6b7280;
+  font-style: italic;
 }

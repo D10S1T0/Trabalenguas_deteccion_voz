@@ -30,18 +30,28 @@
             <button id="cancelCustomTwister">Cancelar</button>
         </div>
     </div>
-
+    
     <div class="controles">
-        <button id="anteriorBtn">← Anterior</button>
-        <button id="siguienteBtn">Siguiente →</button>
+        <button id="anteriorBtn">← Ant</button>
+        <button id="generarBtn">Generar trabalenguas</button>
+        <button id="siguienteBtn">Sig →</button>
     </div>
-
+    
     <div id="imagenPromedioContainer" class="contenedor-imagen-promedio" style="display: none;">
         <h3>Calificación Promedio</h3>
         <img id="imagenPromedio" src="" alt="Calificación" class="imagen-promedio">
     </div>
-
+    
     <p id="recognitionStatus" class="pequeno-tenue">Micrófono inactivo</p>
+    
+    
+    <div id="listaTrabalenguas" class="transcripcion-continua"></div>
+    
+    <div class="controles">
+        <input type="password" id="apiKeyInput" placeholder="Ingresa tu API Key de Google Gemini" 
+            style="padding: 8px 12px; border: 1px solid #22c55e; border-radius: 4px; width: 300px; margin-right: 10px;">
+        <button id="generarBtn">Ingresar API Key</button>
+    </div>
 
     <div id="transcripcionContinua" class="transcripcion-continua"></div>
 
@@ -67,12 +77,13 @@
     <div id="animationText" class="texto-animacion"></div>
     <button id="skipAnimation" class="saltar-animacion">Saltar</button>
 </div>
-
+<script src="scripts/listarTrabalenguas.js"></script>
 <script src="scripts/data.js"></script>
 <script src="scripts/reconocimientoVoz.js"></script>
 <script src="scripts/analisisVoz.js"></script>
 <script src="scripts/nuevoTrabalenguas.js"></script>
 <script src="scripts/animacionesMusica.js"></script>
 <script src="scripts/main.js"></script>
+<script src="scripts/generarTrabalenguas.js"></script>
 </body>
 </html>
