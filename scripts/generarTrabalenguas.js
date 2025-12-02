@@ -32,11 +32,13 @@ class GeneradorTrabalenguas {
         this.generarBtn.textContent = "Generando...";
 
         try {
+            //Prompt para generar los 10 trabalenguas, en texto plano 
             const prompt = `Genera 10 trabalenguas en español con estas características:
             - Deben ser trabalenguas auténticos y divertidos
             - Solo texto plano, sin números (1, 2, 3) pero sí puedes usar números escritos (uno, dos, tres)
             - Cada trabalenguas en una línea separada
             - Sin numeración ni formato especial
+            - Sí el trabalenguas pide pronunciar solo una letra como R cambiala por erre, ejemplo erre con erre cigarro
             - Dificultad variada para practicar pronunciación
             - Ejemplo: "Tres tristes tigres tragaban trigo en un trigal"`;
 
@@ -100,15 +102,12 @@ class GeneradorTrabalenguas {
             return;
         }
 
-        // Agregar a la lista global
         trabalenguasLista.push(...nuevosTrabalenguas);
 
-        // Cambiar al primer trabalenguas generado
         if (window.cambiarTrabalenguas) {
             window.cambiarTrabalenguas(nuevosTrabalenguas[0]);
         }
 
-        // Actualizar la lista de trabalenguas
         if (window.listaTrabalenguasInstance) {
             window.listaTrabalenguasInstance.actualizar();
         }
@@ -117,7 +116,7 @@ class GeneradorTrabalenguas {
     }
 }
 
-// Inicializar cuando el DOM esté listo
+//Inicializar cuando el DOM este listo
 document.addEventListener('DOMContentLoaded', () => {
     new GeneradorTrabalenguas();
 });
