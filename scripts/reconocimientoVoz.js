@@ -151,7 +151,7 @@ Tiempo: ${tiempoGrabacion}s`;
         }
     }
 
-    // Eliminadas las funciones innecesarias que mencionaste
+    //Riniciar la transcripcion
     reiniciarTranscripcion() {
         transcripcion = this.transcripcionCompleta = this.ultimoTextoFinal = "";
         this.actualizarTranscripcionUI();
