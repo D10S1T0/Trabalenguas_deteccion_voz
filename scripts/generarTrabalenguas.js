@@ -12,7 +12,7 @@ class GeneradorTrabalenguas {
             this.generarTrabalenguas();
         });
 
-        // Permitir generar con Enter
+        //Permitir generar con Enter
         this.apiKeyInput?.addEventListener("keypress", (e) => {
             if (e.key === "Enter") {
                 this.generarTrabalenguas();

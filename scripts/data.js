@@ -1,4 +1,4 @@
-// Variables globales y lista de trabalenguas
+//Variables globales y lista de trabalenguas
 let trabalenguasLista = [
   "Tres tristes tigres tragaban trigo en un trigal",
   "Pablito clavó un clavito, ¿qué clavito clavó Pablito?"

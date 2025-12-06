@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const detectorVoz = new DetectorVoz();
-const adminTrabalenguas = new AdministradorTrabalenguas();
+    const adminTrabalenguas = new AdministradorTrabalenguas();
 
     const esperarTrabalenguas = setInterval(() => {
         if (typeof trabalenguasActual !== "undefined" && trabalenguasActual !== null) {
