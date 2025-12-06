@@ -23,7 +23,7 @@ function analisisDetallado() {
   const palabrasEsperadas = trabalenguasActual.toLowerCase().replace(/[.,¿?!¡:;]/g, '').split(' ');
   const palabrasHablas = transcripcion.toLowerCase().replace(/[.,¿?!¡:;]/g, '').trim().split(/\s+/);
   const puntuacionesPalabras = [];
-  const palabrasUsadas = new Set(); // Para evitar reutilizar la misma palabra hablada
+  const palabrasUsadas = new Set(); //Para evitar reutilizar la misma palabra hablada
 
   let puntuacionTotal = 0;
 
@@ -32,9 +32,9 @@ function analisisDetallado() {
     let mejorPuntuacion = 0;
     let mejorIndice = -1;
 
-    // Buscar la mejor coincidencia no utilizada
+    //Buscar la mejor coincidencia no utilizada
     for (let j = 0; j < palabrasHablas.length; j++) {
-      if (palabrasUsadas.has(j)) continue; // Saltar palabras ya usadas
+      if (palabrasUsadas.has(j)) continue; //Saltar palabras ya usadas
       
       const similitud = calcularSimilitud(palabraEsperada, palabrasHablas[j]);
       if (similitud > mejorPuntuacion) {
@@ -45,7 +45,7 @@ function analisisDetallado() {
     }
 
     if (mejorCoincidencia && mejorPuntuacion >= 0.4) {
-      palabrasUsadas.add(mejorIndice); // Marcar como usada
+      palabrasUsadas.add(mejorIndice); //Marcar como usada
       const puntuacionFinal = Math.max(1, Math.round(mejorPuntuacion * 8));
       
       puntuacionesPalabras.push({
@@ -72,7 +72,6 @@ function analisisDetallado() {
 function calcularSimilitud(pal1, pal2) {
   if (pal1 === pal2) return 1.0;
   
-  // Método más simple y eficiente para similitud
   const maxLen = Math.max(pal1.length, pal2.length);
   if (maxLen === 0) return 0;
   
