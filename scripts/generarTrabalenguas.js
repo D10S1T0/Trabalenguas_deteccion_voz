@@ -1,6 +1,7 @@
 class GeneradorTrabalenguas {
     constructor() {
-        this.MODEL = "gemini-2.0-flash-lite";
+        // Configuración específica para OpenRouter
+        this.MODEL = "gpt-4o-mini"; // Modelo de OpenRouter
         this.generarBtn = document.getElementById("generarBtn");
         this.apiKeyInput = document.getElementById("apiKeyInput");
         
@@ -24,7 +25,7 @@ class GeneradorTrabalenguas {
         const API_KEY = this.apiKeyInput?.value.trim();
         
         if (!API_KEY) {
-            alert("Por favor ingresa tu API Key de Google Gemini.");
+            alert("Por favor ingresa tu API Key de OpenRouter.");
             return;
         }
 
@@ -32,7 +33,7 @@ class GeneradorTrabalenguas {
         this.generarBtn.textContent = "Generando...";
 
         try {
-            //Prompt para generar los 10 trabalenguas, en texto plano 
+            //Prompt para generar los 10 trabalenguas
             const prompt = `Genera 10 trabalenguas en español con estas características:
             - Deben ser trabalenguas auténticos y divertidos
             - Solo texto plano, sin números (1, 2, 3) pero sí puedes usar números escritos (uno, dos, tres)
@@ -42,7 +43,7 @@ class GeneradorTrabalenguas {
             - Dificultad variada para practicar pronunciación
             - Ejemplo: "Tres tristes tigres tragaban trigo en un trigal"`;
 
-            const trabalenguas = await this.llamarAPI(API_KEY, prompt);
+            const trabalenguas = await this.llamarAPIOpenRouter(API_KEY, prompt);
             this.procesarTrabalenguas(trabalenguas);
             
         } catch (error) {
@@ -54,36 +55,44 @@ class GeneradorTrabalenguas {
         }
     }
 
-    async llamarAPI(apiKey, prompt) {
-        const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/${this.MODEL}:generateContent?key=${apiKey}`,
-            {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json" 
-                },
-                body: JSON.stringify({
-                    contents: [
-                        { 
-                            role: "user", 
-                            parts: [{ text: prompt }] 
-                        }
-                    ]
-                })
-            }
-        );
+    async llamarAPIOpenRouter(apiKey, prompt) {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${apiKey}`,
+                "HTTP-Referer": window.location.origin || "http://localhost",
+                "X-Title": "Generador de Trabalenguas"
+            },
+            body: JSON.stringify({
+                model: this.MODEL,
+                messages: [
+                    { 
+                        role: "system", 
+                        content: "Eres un experto en lengua española especializado en crear trabalenguas divertidos y creativos." 
+                    },
+                    { 
+                        role: "user", 
+                        content: prompt 
+                    }
+                ],
+                max_tokens: 1000,
+                temperature: 0.8
+            })
+        });
 
         if (!response.ok) {
-            throw new Error(`Error ${response.status}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(`Error ${response.status}: ${errorData.error?.message || response.statusText}`);
         }
 
         const data = await response.json();
         
-        if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
-            throw new Error("No se recibieron trabalenguas");
+        if (!data.choices?.[0]?.message?.content) {
+            throw new Error("No se recibieron trabalenguas de la API");
         }
 
-        return data.candidates[0].content.parts[0].text;
+        return data.choices[0].message.content;
     }
 
     procesarTrabalenguas(texto) {
@@ -98,13 +107,15 @@ class GeneradorTrabalenguas {
         const nuevosTrabalenguas = lineas.slice(0, 10);
 
         if (nuevosTrabalenguas.length === 0) {
-            alert("No se pudieron generar trabalenguas. Intenta nuevamente.");
+            alert("No se pudieron generar trabalenguas. Intenta con un prompt más específico.");
             return;
         }
 
-        trabalenguasLista.push(...nuevosTrabalenguas);
+        if (typeof trabalenguasLista !== 'undefined') {
+            trabalenguasLista.push(...nuevosTrabalenguas);
+        }
 
-        if (window.cambiarTrabalenguas) {
+        if (window.cambiarTrabalenguas && nuevosTrabalenguas.length > 0) {
             window.cambiarTrabalenguas(nuevosTrabalenguas[0]);
         }
 
@@ -116,7 +127,7 @@ class GeneradorTrabalenguas {
     }
 }
 
-//Inicializar cuando el DOM este listo
+//Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     new GeneradorTrabalenguas();
 });
